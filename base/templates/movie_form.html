@@ -1,0 +1,15 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<div style="width: 80%vw; height: 600px; display: flex; justify-content: center; align-items: center;
+" >
+    <div style="background-color:#d2d2d2;padding: 80px; padding-right: 150px; padding-left: 150px; border-radius: 7px; border: brown solid; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <h1>Create New Room</h1>
+        <form method="POST" action="">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="Submit" value="Submit">
+        </form>
+    </div>
+</div>
+{% endblock %}

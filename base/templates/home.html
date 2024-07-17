@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Forum</title>
+    <link rel="stylesheet" href="{% static 'styles/main.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        
+
+        .home-container{
+        padding: 20px;
+        display: grid;
+        height:0.8vw;
+        grid-template-columns: 1fr 3fr 1fr;
+    }
+    .fl{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        gap:20px;
+    }
+    
+    /* main.css */
+/* main.css */
+.home-container {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    gap: 20px;
+    margin-bottom: 15px;
+
+}
+
+/* Common Styles */
+.home-container > div {
+    background-color: #333; /* Light blue background */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(152, 51, 51, 0.585);
+}
+
+.home-container > div > * {
+    margin: 0; /* Reset default margins */
+}
+
+/* Topic Styles */
+.home-container > div:first-child {
+    border: 2px solid #5A7684; /* Dark grey border */
+}
+
+.home-container > div:first-child h3 {
+    color: #1F2F16; /* Dark green text */
+}
+
+/* Room Styles */
+.home-container > div:nth-child(2) {
+    border: 2px solid #5A7684; /* Dark grey border */
+}
+
+.home-container > div:nth-child(2) h5 {
+    color: #1F2F16; /* Dark green text */
+}
+
+/* Recent Activities Styles */
+.home-container > div:last-child {
+    border: 2px solid #5A7684; /* Dark grey border */
+}
+
+.home-container > div:last-child h3,
+.home-container > div:last-child small {
+    color: #1F2F16; /* Dark green text */
+}
+/* main.css */
+.room-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.room-card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-header {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.card-header a {
+    text-decoration: none;
+    color: black;
+    margin-right: 10px;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-body h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.card-body h4 {
+    margin-top: 0;
+    color: black;
+}
+
+.card-body hr {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#topics{
+    background-color: #cccccd;
+    margin-bottom: 15px;
+
+}
+#rooms{
+    background-color:#d2d2d2;
+    margin-bottom: 15px;
+
+}
+#activities{
+    background-color:#dbdcdc;
+    margin-bottom: 15px;
+
+}
+/* Add this CSS code below your existing CSS styles */
+
+
+
+
+
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .home-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+    body {
+        font-family: cursive, serif;
+    }
+
+.welcome-container {
+    width: 97.2%; /* Take up 100% of viewport width */
+    height: 100vh; /* Take up 100% of viewport height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #333; /* Blue background */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color: white; /* White text color */
+}
+
+.welcome-container h1 {
+    font-size: 36px;
+}
+
+.welcome-container h2 {
+    font-size: 60px;
+    margin-bottom: 20px;
+}
+
+.welcome-container button {
+    background-color: #0056b3; /* Darker blue */
+    color: white; /* White text color */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.welcome-container button:hover {
+    background-color: #004080; /* Darker shade of blue on hover */
+}
+
+    </style>
+</head>
+<body>
+    <div class="welcome-container">
+        <img style="margin-top: -130px;" src="{% static 'images/b.png' %}" width="200px" height="200px" alt="Logo">
+        <h1 >Welcome to the World of Cinema</h1>
+        <h2 style="margin-top: -8px;">CINEVERSE</h2>
+
+        <button onclick="scrollToHome()">Explore Now</button>
+    </div>
+    <nav>
+        <div style="display: flex;">
+        <a href="/">
+            <img src="{% static 'images/b.png' %}" alt="Logo">
+        </a>
+        <h1 style="  font-family: cursive, serif;color: white; text-align: center; ; padding: 15px; margin-top: -7px; margin-left: -7px;">CINEVERSE</h1>
+        </div>
+        <form method="GET" action="{% url 'home' %}">
+            <input type="text" name="q" placeholder="Search for movie pages">
+        </form>
+        <div class="nav-links">
+            <a href="{% url 'rec' %}">Get Recommendations</a>
+            <!-- <a href="{% url 'myprofile' %}">My Profile</a> -->
+
+            {% if request.user.is_authenticated %}
+                <a href="{% url 'logout' %}">Logout</a>
+            {% else %}
+                <a href="{% url 'login' %}">Login</a>
+            {% endif %}
+        </div>
+    </nav>
+    
+
+</style>
+
+
+
+
+<div class="home-container">
+    <div id="topics">
+        <div class="fl">
+        <h3>Browse Topics</h3>
+        <hr>
+        <div>
+            <a href="{% url 'home' %}">All</a>
+        </div>
+        
+        {% for topic in topics %}
+            <div>
+                <a href="{% url 'home' %}?q={{topic.name}}">{{topic.name}}</a>
+            </div>
+        {% endfor %}
+    </div>
+    </div>
+    <div id="rooms">
+        <div class="fl">
+                    <a href="{% url 'create-room' %}" style=" color: rgb(0, 0, 0); background-color: rgb(16, 161, 158); padding: 6px; border-radius: 7px;">Create Room</a>
+            </div>
+            <br>
+        <div>
+            {% for room in rooms %}
+<div class="room-card" style="padding: 6px;">
+    
+    <div class="card-header" style="margin-bottom: 16px; padding-bottom: 10px; display: flex;">
+        <a href="{% url 'update-room' room.id %}" style="background-color: rgb(16, 161, 158); padding: 6px; border-radius: 7px; margin-top: 5px;">Edit</a>
+        <a href="{% url 'delete-room' room.id %}" style="background-color: rgb(16, 161, 158); padding: 6px; border-radius: 7px; margin-top: 5px;">Delete</a>
+        <a href="{% url 'user-profile' room.host.id %}" style="margin-left: auto; justify-self: flex-end;">Creator: @{{room.host.username}}</a>
+    </div>
+    <div class="card-body">
+        <h2><a href="{% url 'room' room.id %}">{{room.name}}</a></h2>
+        <h4>Topic: {{room.topic.name}}</h4>
+        <hr>
+    </div>
+</div>
+{% endfor %}
+    <h5 style="color: red;">{{room_count}} movie pages available</h5>
+
+        </div>
+    </div>
+    <div id="activities">
+        <h3>
+            Recent Activities
+        </h3>
+        <hr>
+        {% for message in room_messages %}
+            
+            <div style="display: flex; flex-direction: column;">
+                <p>Message: {{message}}</p>
+                <small>@{{message.user}} {{message.created|timesince}} ago</small>
+                <br><small>in "{{message.room}}"</small>
+            </div>
+            <hr>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+</body>
+<script>
+    function scrollToHome() {
+        const homeContainer = document.querySelector('nav');
+        homeContainer.scrollIntoView({ behavior: 'smooth' });
+    }
+    </script>
+</html>

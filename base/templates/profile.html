@@ -1,0 +1,28 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<style>
+    body{
+        background-color: #cccccd;
+    }
+    .profile-container{
+        display: grid;
+        grid-template-columns: 1fr 3fr 1fr;
+    /* Darker shade of blue on hover */
+}
+</style>
+<h1 style="background-color: #cccccd; margin-left: 10px;">
+    @{{user.username}}
+</h1>
+<div class="profile-container">
+    <div style="background-color: #cccccd;">
+        {% include 'topics_component.html' %}
+    </div>
+    <div style="background-color: #cccccd;">
+        {% include 'feed_component.html' %}
+    </div>
+    <div style="background-color: #cccccd;">
+        {% include 'activity_component.html' %}
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,83 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<style>
+    /* main.css */
+.login-register-container {
+    width: 700px;
+    margin: 120px 120px;
+    padding: 40px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-register-container form {
+    margin-bottom: 20px;
+}
+
+.login-register-container label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.login-register-container input[type="text"],
+.login-register-container input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.login-register-container input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+}
+
+.login-register-container input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.login-register-container p {
+    margin-top: 10px;
+}
+
+.login-register-container a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.login-register-container a:hover {
+    text-decoration: underline;
+}
+
+</style>
+<div class="login-register-container">
+    {% if page == 'login' %}
+    <form method="POST" action="">
+        {% csrf_token %}
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" placeholder="Enter username">
+        
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" placeholder="Enter password">
+        
+        <input type="submit" value="Login">
+    </form>
+    <p>Haven't signed up yet? <a href="{% url 'register' %}">Sign Up</a></p>
+    {% else %}
+    <form method="POST" action="">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Register">
+    </form>
+    <p>Already have an account? <a href="{% url 'login' %}">Sign In</a></p>
+    {% endif %}
+</div>
+{% endblock content %}

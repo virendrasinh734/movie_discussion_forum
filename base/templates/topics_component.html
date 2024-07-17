@@ -1,0 +1,180 @@
+    <style>
+        
+    .profile-container{
+        display: grid;
+        grid-template-columns: 1fr 3fr 1fr;
+    }
+
+    .home-container {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    gap: 20px;
+    margin-bottom: 15px;
+
+}
+
+/* Common Styles */
+.home-container > div {
+    background-color: #333; /* Light blue background */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(152, 51, 51, 0.585);
+}
+
+.home-container > div > * {
+    margin: 0; /* Reset default margins */
+}
+
+/* Topic Styles */
+.home-container > div:first-child {
+    border: 2px solid #5A7684; /* Dark grey border */
+}
+
+.home-container > div:first-child h3 {
+    color: #1F2F16; /* Dark green text */
+}
+
+/* Room Styles */
+.home-container > div:nth-child(2) {
+    border: 2px solid #5A7684; /* Dark grey border */
+}
+
+.home-container > div:nth-child(2) h5 {
+    color: #1F2F16; /* Dark green text */
+}
+
+/* Recent Activities Styles */
+.home-container > div:last-child {
+    border: 2px solid #5A7684; /* Dark grey border */
+}
+
+.home-container > div:last-child h3,
+.home-container > div:last-child small {
+    color: #1F2F16; /* Dark green text */
+}
+/* main.css */
+.room-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.room-card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-header {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.card-header a {
+    text-decoration: none;
+    color: black;
+    margin-right: 10px;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-body h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.card-body h4 {
+    margin-top: 0;
+    color: black;
+}
+
+.card-body hr {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#topics{
+    background-color: #cccccd;
+    margin-bottom: 15px;
+
+}
+#rooms{
+    background-color:#d2d2d2;
+    margin-bottom: 15px;
+
+}
+#activities{
+    background-color:#dbdcdc;
+    margin-bottom: 15px;
+
+}
+/* Add this CSS code below your existing CSS styles */
+
+
+
+
+
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .home-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+    body {
+        font-family: cursive, serif;
+    }
+
+.welcome-container {
+    width: 97.2%; /* Take up 100% of viewport width */
+    height: 100vh; /* Take up 100% of viewport height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #333; /* Blue background */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color: white; /* White text color */
+}
+
+.welcome-container h1 {
+    font-size: 36px;
+}
+
+.welcome-container h2 {
+    font-size: 60px;
+    margin-bottom: 20px;
+}
+
+.welcome-container button {
+    background-color: #0056b3; /* Darker blue */
+    color: white; /* White text color */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.welcome-container button:hover {
+    background-color: #004080; /* Darker shade of blue on hover */
+}
+    </style>
+    <h3>Browse Topics</h3>
+    <hr>
+    <div>
+        <a href="{% url 'home' %}">All</a>
+    </div>
+    {% for topic in topics %}
+        <div>
+            <a href="{% url 'home' %}?q={{topic.name}}">{{topic.name}}</a>
+        </div>
+    {% endfor %}
