@@ -210,7 +210,7 @@ def rate_movie(request, pk):
 def rec(request):
     if request.method == 'POST':
         question = request.POST.get('movie', '')  # Get the movie name from the form
-        genai.configure(api_key="AIzaSyB3OOe60G5hDivzp0G0m57qJ_TlW88P20U")  # Replace "YOUR_API_KEY" with your actual API key
+        genai.configure(api_key="")  
         model = genai.GenerativeModel("gemini-pro")
         chat = model.start_chat(history=[])
         q=f"Suggest 5 movies similar to {question}" 
